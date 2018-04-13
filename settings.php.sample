@@ -1,0 +1,14 @@
+<?php
+// MySQL Host/Port
+$HOST = "127.0.0.1:3306";
+// MySQL Username
+$USER = "gadis";
+// MySQL Password
+$PASSWORD = "super-secret6969";
+// MySQL Database
+$DATABASE = "gadis";
+// Gadis Remote Module Host
+$REMOTE_HOST = "127.0.0.1";
+// Gadis Remote Module Port
+$REMOTE_PORT = 9525;
+?>
