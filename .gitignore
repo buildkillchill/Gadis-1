@@ -1,4 +1,1 @@
-bin/
-*.pyc
-__pycache__/
-settings.py
+settings.php
