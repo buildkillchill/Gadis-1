@@ -17,7 +17,7 @@
 		}
 		$row = $res->fetch_assoc();
 		$DID = $row["id"];
-		$res = $conn->query("INSERT INTO linked (sid, did) VALUES (".$SID.",".$DID.") ON DUPLICATE KEY UPDATE did=".$DID.",sid=".$SID);
+		$res = $conn->query("INSERT INTO `linked` (`sid`, `did`) VALUES (".$SID.",".$DID.") ON DUPLICATE KEY UPDATE `did`=".$DID.",`sid`=".$SID);
 		if($res === TRUE)
 		{
 			$conn->query("UPDATE `link` SET `used`=TRUE WHERE `code`='".$_GET['code']."'");
