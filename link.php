@@ -7,7 +7,6 @@
 	else
 	{
 		$SID = $_GET['id'];
-		// TODO: Load these values from shared config
 		$conn = new mysqli($HOST, $USER, $PASSWORD, $DATABASE);
 		if($conn->connect_error) { die('DB Connection Failed: ' . $conn->connect_error); }
 		$res = $conn->query("SELECT `id` FROM `link` WHERE `code`='".$_GET['code']."' AND `used`=FALSE");
@@ -21,6 +20,7 @@
 		if($res === TRUE)
 		{
 			$conn->query("UPDATE `link` SET `used`=TRUE WHERE `code`='".$_GET['code']."'");
+			die('SUCCESS');
 		}
 		else { die('Link Failed: ' . $conn->error); }
 		$conn->close();
