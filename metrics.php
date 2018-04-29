@@ -3,8 +3,7 @@
 	require 'settings.php';
 	// 0 = Connected or Joined
 	// 1 = Disconnected or Left
-	// 2 = Kicked
-	$ACTIONS = [ 0, 1, 2, ];
+	$ACTIONS = [ 0, 1, ];
 	// 0 = GMod
 	// 1 = Discord
 	$ACCOUNT = [ 0, 1, ];
