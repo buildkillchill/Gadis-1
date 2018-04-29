@@ -24,22 +24,14 @@
 	if(!isset($_GET["id"]) || !isset($_GET["act"]) || !isset($_GET["acc"])) output(0x101, "Missing parameters");
 	if(!in_array($_GET["acc"], $ACCOUNT)) output(0x102, "Invalid account");
 	if(!in_array($_GET["act"], $ACTIONS)) output(0x103, "Invalid action");
+	if($_GET["act"] == "1") output(0x104, "Not implemented yet");
 	try
 	{
 		$conn = new mysqli($HOST, $USER, $PASSWORD, $DATABASE);
 		if($conn->connect_errno) output(0x201, "MySQL connection failed.");
-		if(!$conn->query("INSERT INTO `metrics` (id, account, action) VALUES (".$_GET["id"].",".$_GET["acc"].",".$_GET["act"].")")) output(0x2002, "MySQL query failed.", $conn->errno, $conn->error);
-		if($_GET["acc"] == "0" && $_GET["act"] == "0")
-		{
-			if(!$conn->query("INSERT INTO `active` (id) VALUES (".$_GET["id"].")")) output(0x2002, "MySQL query failed.", $conn->errno, $conn->error);
-			output(0x000, "Player connected");
-		}
-		elseif($_GET["acc"] == "0" && $_GET["act"] == "1")
-		{
-			if(!$conn->query("DELETE FROM `active` WHERE `id`=".$_GET["id"])) output(0x2002, "MySQL query failed.", $conn->errno, $conn->error);
-			output(0x000, "Player disconnected");
-		}
-		else output(0x000);
+		if($_GET["act"] == "0") if(!$conn->query("INSERT INTO `metrics` (id) VALUES (".$_GET["id"].")")) output(0x2002, "MySQL query failed", $conn->errno, $conn->error);
+		if($_GET["act"] == "1") if(!$conn->query("UPDATE `metrics` SET `disconnect`=NOW() WHERE `disconnect`=NULL AND `id`=".$_GET["id"])) output(0x2002, "MySQL query failed.", $conn->errno, $conn->error);
+		output(0x000);
 	} catch (Exception $e) {
 		output(0xFFF, "Unknown error", 0, $e->getMessage());
 	}
