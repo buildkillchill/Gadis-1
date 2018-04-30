@@ -36,7 +36,7 @@
 		}
 		elseif($_GET["act"] == "1")
 		{
-			if(!$conn->query("UPDATE `metrics` SET `disconnect`=NOW() WHERE `disconnect`=NULL AND `id`=".$_GET["id"])) output(0x2002, "MySQL query failed.", $conn->errno, $conn->error);
+			if(!$conn->query("UPDATE `metrics` SET `disconnect`=NOW() WHERE `disconnect` IS NULL AND `id`=".$_GET["id"])) output(0x2002, "MySQL query failed.", $conn->errno, $conn->error);
 			if(!$conn->query("DELETE FROM `active` WHERE `id`=".$_GET["id"])) output(0x2002, "MySQL query failed", $conn->errno, $conn->error);
 			output(0x000, "Player disconnected");
 		}
