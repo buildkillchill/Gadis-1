@@ -24,7 +24,6 @@
 	if(!isset($_GET["id"]) || !isset($_GET["act"]) || !isset($_GET["acc"])) output(0x101, "Missing parameters");
 	if(!in_array($_GET["acc"], $ACCOUNT)) output(0x102, "Invalid account");
 	if(!in_array($_GET["act"], $ACTIONS)) output(0x103, "Invalid action");
-	if($_GET["act"] == "1") output(0x104, "Not implemented yet");
 	try
 	{
 		$conn = new mysqli($HOST, $USER, $PASSWORD, $DATABASE);
